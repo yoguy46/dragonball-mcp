@@ -1,0 +1,21 @@
+<Window x:Class="FrontendWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dragon Ball - Iniciar sesión"
+        Height="330" Width="380"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <StackPanel Margin="25">
+        <TextBlock Text="Dragon Ball" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <TextBlock Text="Usuario" Margin="0,0,0,4"/>
+        <TextBox Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}" Padding="4" Margin="0,0,0,12"/>
+
+        <TextBlock Text="Contraseña" Margin="0,0,0,4"/>
+        <PasswordBox x:Name="CajaPassword" Padding="4" Margin="0,0,0,18"/>
+
+        <Button Content="Entrar" Command="{Binding EntrarCommand}" IsDefault="True" Padding="8"/>
+
+        <TextBlock Text="{Binding Mensaje}" Foreground="Firebrick" TextWrapping="Wrap" Margin="0,12,0,0"/>
+    </StackPanel>
+</Window>

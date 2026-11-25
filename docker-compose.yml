@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-dragonball
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: dragonball
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot1234"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mcp:
+    build:
+      context: .
+      dockerfile: MCPServer/Dockerfile
+    container_name: mcp-dragonball
+    environment:
+      Api__UrlBase: http://api:8080
+      Api__Usuario: admin
+      Api__Password: admin123
+    ports:
+      - "5100:8080"
+
+  api:
+    build:
+      context: .
+      dockerfile: BackendController/Dockerfile
+    container_name: api-dragonball
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mcp:
+        condition: service_started
+    environment:
+      Persistencia__Modo: EF
+      Persistencia__CadenaConexion: "Server=mysql;Port=3306;Database=dragonball;User=root;Password=root1234;"
+      Mcp__Url: http://mcp:8080/mcp
+      Llm__Url: http://host.docker.internal:1234/v1
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "5000:8080"
+
+volumes:
+  mysql_data:

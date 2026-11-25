@@ -1,0 +1,29 @@
+<UserControl x:Class="FrontendWPF.Views.ConfiguracionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Margin="20">
+        <TextBlock Text="Configuración" FontSize="22" FontWeight="Bold" Margin="0,0,0,16"/>
+
+        <GroupBox Header="Persistencia activa en la API" Padding="12" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,10">
+                    <Run Text="Modo actual: "/>
+                    <Run Text="{Binding ModoActual}" FontWeight="Bold"/>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Usar MySQL (EF)" Command="{Binding UsarEFCommand}" Padding="12,6" Margin="0,0,10,0"/>
+                    <Button Content="Usar memoria (DataSet)" Command="{Binding UsarDataSetCommand}" Padding="12,6"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Importar el CSV de Kaggle" Padding="12" Margin="0,0,0,16">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Importar a MySQL (EF)" Command="{Binding ImportarEFCommand}" Padding="12,6" Margin="0,0,10,0"/>
+                <Button Content="Importar a memoria (DataSet)" Command="{Binding ImportarDataSetCommand}" Padding="12,6"/>
+            </StackPanel>
+        </GroupBox>
+
+        <TextBlock Text="{Binding Estado}" TextWrapping="Wrap"/>
+    </StackPanel>
+</UserControl>

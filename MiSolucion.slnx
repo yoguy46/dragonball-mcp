@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Folder Name="/Elementos de la solucion/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="Modelo/Modelo.csproj" />
+  <Project Path="Repositorio/Repositorio.csproj" />
+  <Project Path="BackendController/BackendController.csproj" />
+  <Project Path="MCPServer/MCPServer.csproj" />
+  <Project Path="FrontendConsola/FrontendConsola.csproj" />
+  <Project Path="FrontendWPF/FrontendWPF.csproj" />
+</Solution>
